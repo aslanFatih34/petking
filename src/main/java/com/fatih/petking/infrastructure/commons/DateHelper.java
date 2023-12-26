@@ -1,5 +1,7 @@
 package com.fatih.petking.infrastructure.commons;
 
+import com.fatih.petking.domain.exception.base.BusinessException;
+import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -14,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+@UtilityClass
 public final class DateHelper {
 
     public static final String MYSQL_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
@@ -22,9 +25,6 @@ public final class DateHelper {
     private static final Logger logger = LoggerFactory.getLogger(DateHelper.class);
     private static final int MONDAY = 2;
     private static final int SUNDAY = 1;
-
-    private DateHelper() {
-    }
 
     public static Date now() {
         return new Date();
@@ -72,7 +72,7 @@ public final class DateHelper {
         try {
             return new SimpleDateFormat(pattern).parse(dateStr);
         } catch (ParseException e) {
-            throw new RuntimeException("Caught exception while parsing date, message: " + e.getMessage());
+            throw new BusinessException("Caught exception while parsing date, message: " + e.getMessage());
         }
     }
 
@@ -109,7 +109,7 @@ public final class DateHelper {
         return cal.getTime();
     }
 
-    public static Date substractDays(Date target, int days) {
+    public static Date subtractDays(Date target, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(target);
         cal.add(Calendar.DAY_OF_MONTH, -days);
@@ -130,14 +130,14 @@ public final class DateHelper {
         return cal.getTime();
     }
 
-    public static Date substractMinutes(Date target, int minutes) {
+    public static Date subtractMinutes(Date target, int minutes) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(target);
         cal.add(Calendar.MINUTE, -minutes);
         return cal.getTime();
     }
 
-    public static Date substractSeconds(Date target, int seconds) {
+    public static Date subtractSeconds(Date target, int seconds) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(target);
         cal.add(Calendar.SECOND, -seconds);
@@ -199,12 +199,12 @@ public final class DateHelper {
         cal.setTime(date);
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         if (dayOfWeek == SUNDAY) {
-            return substractDays(date, 2);
+            return subtractDays(date, 2);
         }
         if (dayOfWeek == MONDAY) {
-            return substractDays(date, 3);
+            return subtractDays(date, 3);
         }
-        return substractDays(date, 1);
+        return subtractDays(date, 1);
     }
 
     public static Integer getPastDayCountOfCurrentMonth() {

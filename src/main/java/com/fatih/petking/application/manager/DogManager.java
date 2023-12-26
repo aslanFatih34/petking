@@ -5,7 +5,6 @@ import com.fatih.petking.application.model.response.DogAdoptionResponse;
 import com.fatih.petking.application.model.response.base.Response;
 import com.fatih.petking.application.model.response.mapper.BaseResponseMapper;
 import com.fatih.petking.application.model.response.mapper.DogAdoptionResponseMapper;
-import com.fatih.petking.domain.dto.DogAdoptionDto;
 import com.fatih.petking.domain.mapper.base.DogAdoptionMapper;
 import com.fatih.petking.domain.service.DogAdoptionService;
 import lombok.RequiredArgsConstructor;

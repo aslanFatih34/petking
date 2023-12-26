@@ -2,11 +2,11 @@ package com.fatih.petking.application.model.response;
 
 import com.fatih.petking.application.model.response.base.Response;
 import com.fatih.petking.domain.entity.base.enumtype.Gender;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class DogAdoptionResponse extends Response {
     private String ref;
     private String name;

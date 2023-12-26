@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/dog")
+@RequestMapping("api/v1/dog/")
 @RequiredArgsConstructor
 public class DogController {
 
@@ -26,7 +26,7 @@ public class DogController {
         return dogManager.createDogAdoptionAdvert(request);
     }
 
-    @GetMapping("/{ref}")
+    @GetMapping("{ref}")
     public DogAdoptionResponse retrieveDogAdoptionAdvert(@PathVariable String ref) {
         return dogManager.retrieveDogAdoptionAdvert(ref);
     }

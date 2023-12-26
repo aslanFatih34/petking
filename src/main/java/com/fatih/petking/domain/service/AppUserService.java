@@ -29,6 +29,7 @@ public class AppUserService implements UserDetailsService {
     }
 
     public AppUser save(UserRegisterRequest userRegisterRequest) {
+        //TODO check already exist
         AppUser user = AppUser.builder()
                 .userName(userRegisterRequest.getName())
                 .email(userRegisterRequest.getEmail())

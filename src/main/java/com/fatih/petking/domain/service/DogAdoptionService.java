@@ -1,6 +1,7 @@
 package com.fatih.petking.domain.service;
 
 import com.fatih.petking.domain.dto.DogAdoptionDto;
+import com.fatih.petking.domain.exception.base.BusinessException;
 import com.fatih.petking.domain.mapper.base.DogAdoptionMapper;
 import com.fatih.petking.domain.repository.DogAdoptionRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,6 @@ public class DogAdoptionService {
     public DogAdoptionDto retrieveDogAdoptionAdvert(String ref){
         return dogAdoptionRepository.findByRef(ref)
                 .map(dogAdoptionMapper::toDto)
-                .orElseThrow(RuntimeException::new); //TODO
+                .orElseThrow(() -> new BusinessException("business.notFound.dopAdoption", ref));
     }
 }

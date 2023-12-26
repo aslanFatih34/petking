@@ -18,10 +18,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
+import static com.fatih.petking.infrastructure.commons.RedisKeyGenerator.API_PREFIX;
+import static com.fatih.petking.infrastructure.commons.RedisKeyGenerator.KEY_SEPARATOR;
+
 @Configuration
 @EnableCaching
 @ConditionalOnProperty(value = "redis.enabled", havingValue = "true")
-public class RedisConfiguration implements CachingConfigurer {
+public class CacheConfiguration implements CachingConfigurer {
 
     @Bean
     LettuceConnectionFactory lettuceConnectionFactory() {
@@ -65,6 +68,7 @@ public class RedisConfiguration implements CachingConfigurer {
     private RedisCacheConfiguration buildCacheConfiguration(Duration duration) {
         return RedisCacheConfiguration
                 .defaultCacheConfig()
+                .computePrefixWith(cacheName -> API_PREFIX + KEY_SEPARATOR + cacheName + KEY_SEPARATOR)
                 .disableCachingNullValues()
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))

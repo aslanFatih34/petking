@@ -19,6 +19,6 @@ spring:
 
 jwt:
   secret-key: '4E635266546A576E5A7234753778214125442A472D4B6150645367566B587032'
-  expiration: 60000000
-  refresh-expiration: 60000000
+  expiration: 600000000
+  refresh-expiration: 600000000
 redis.enabled: true

@@ -1,5 +1,7 @@
 package com.fatih.petking.infrastructure.configuration;
 
+import com.fatih.petking.infrastructure.interceptor.aspect.CorrelationIdInterceptor;
+import com.fatih.petking.infrastructure.interceptor.aspect.LogExecutionInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -12,7 +14,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.Locale;
 
 @Configuration
-public class LocalizationConfiguration implements WebMvcConfigurer {
+public class InterceptorConfiguration implements WebMvcConfigurer {
 
     @Bean
     public LocaleResolver localeResolver() {
@@ -40,5 +42,7 @@ public class LocalizationConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
+        registry.addInterceptor(new CorrelationIdInterceptor());
+        registry.addInterceptor(new LogExecutionInterceptor());
     }
 }

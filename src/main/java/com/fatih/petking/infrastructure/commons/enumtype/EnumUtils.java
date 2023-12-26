@@ -1,12 +1,11 @@
 package com.fatih.petking.infrastructure.commons.enumtype;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@UtilityClass
 public final class EnumUtils {
-
-    private EnumUtils() {
-    }
 
     public static <T extends Enum<T>> T valueOf(Class<T> enumType, String name, T defaultEnumTypeIfNotFound) {
         try {
@@ -36,8 +35,8 @@ public final class EnumUtils {
 
     private static <T extends Enum<T> & ValueEnum<V>, V> T getEnumConstantValue(T enumConstant, V value) {
         T t = null;
-        if (value instanceof String) {
-            if (((String) enumConstant.getValue()).equalsIgnoreCase((String) value)) {
+        if (value instanceof String valueStr) {
+            if (((String) enumConstant.getValue()).equalsIgnoreCase(valueStr)) {
                 t = enumConstant;
             }
         } else if (enumConstant.getValue().equals(value)) {

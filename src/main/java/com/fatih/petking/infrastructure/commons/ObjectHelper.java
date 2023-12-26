@@ -1,11 +1,11 @@
 package com.fatih.petking.infrastructure.commons;
 
+import lombok.experimental.UtilityClass;
+
 import java.util.stream.Stream;
 
+@UtilityClass
 public final class ObjectHelper {
-
-    private ObjectHelper() {
-    }
 
     public static boolean isNotNull(Object object) {
         return object != null;
